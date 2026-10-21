@@ -607,7 +607,7 @@ section {
     z-index: 10;
 
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     align-items: center !important;
 
     width: 100%;
