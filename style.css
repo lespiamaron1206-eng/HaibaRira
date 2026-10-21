@@ -113,16 +113,20 @@ section {
    ヘッダー
 ============================== */
 .site-header {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  width: 100%;
   min-height: 76px;
   padding: 16px 6%;
-  background-color: var(--background-color);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(25, 25, 25, 0.25);
+  border-bottom: 1px solid rgba(186, 211, 255, 0.2);
+  color: #ffffff;
 }
 
 .logo {
@@ -168,6 +172,20 @@ section {
   transform: scaleX(1);
 }
 
+.icon_youtube {
+  width: 42px;
+  height: 33px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.icon_X {
+  width: 25px;
+  height: 18px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
 /* ==============================
    メインビジュアル
 ============================== */
@@ -175,6 +193,7 @@ section {
   position: relative;
   height: 70vh;
   min-height: 540px;
+  margin-top: 0;
   padding: 0;
   overflow: hidden;
   background-color: #191919;
@@ -214,7 +233,7 @@ section {
   justify-content: center;
   width: 100%;
   height: 20%;
-  padding: 12px 20px;
+  padding: 0;
   background: linear-gradient(
     to bottom,
     rgba(25, 25, 25, 0.05),
@@ -225,9 +244,9 @@ section {
 
 .hero-name-band img {
   display: block;
-  width: auto;
-  height: 75%;
-  max-width: 80%;
+  width: 80%;
+  height: 95%;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -239,21 +258,14 @@ section {
 }
 
 .section-heading {
-  margin-bottom: 48px;
+  margin-bottom: 30px;
   text-align: center;
-}
-
-.section-subtitle {
-  margin-bottom: 6px;
-  color: var(--accent-color);
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
 }
 
 .section-heading h2 {
   margin-bottom: 0;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-weight: 500;
   letter-spacing: 0.16em;
 }
 
@@ -275,20 +287,29 @@ section {
 
 .profile-image {
   overflow: hidden;
-  background-color: var(--sub-background);
-  border: 1px solid var(--border-color);
 }
 
 .profile-image img {
-  width: 100%;
+  width: 70%;
   height: auto;
   object-fit: cover;
 }
 
 .profile-details h3 {
   margin-bottom: 20px;
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
-  font-weight: 600;
+  font-size: clamp(2.5rem, 4vw, 3.4rem);
+  font-weight: 500;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent-color);
+  background-color: rgba(186, 211, 255, 0.06);
+}
+
+.profile-kana {
+  margin-left: 2px;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 400;
+  vertical-align: baseline;
+  letter-spacing: 0.08em;
 }
 
 .profile-introduction {
@@ -296,14 +317,6 @@ section {
   color: #eeeeee;
   font-size: 0.95rem;
   line-height: 2.1;
-}
-
-.profile-catchcopy {
-  margin-bottom: 28px;
-  padding: 14px 18px;
-  border-left: 3px solid var(--accent-color);
-  background-color: rgba(186, 211, 255, 0.06);
-  font-size: 0.9rem;
 }
 
 .profile-list {
@@ -395,11 +408,8 @@ section {
 ============================== */
 .sns-section {
   text-align: center;
-}
-
-.sns-description {
-  margin-bottom: 30px;
-  color: #eeeeee;
+  padding-top: 30px;
+  padding-bottom: 70px;
 }
 
 .sns-links {
@@ -452,6 +462,7 @@ section {
 ============================== */
 @media (max-width: 768px) {
   .site-header {
+    position: relative;
     flex-direction: column;
     gap: 10px;
     padding: 16px 5%;
@@ -492,6 +503,11 @@ section {
   .profile-image {
     width: min(100%, 360px);
     margin: 0 auto;
+  }
+
+  .profile-kana {
+    font-size: 1.1rem;
+    margin-left: 8px;
   }
 
   .profile-list > div {
