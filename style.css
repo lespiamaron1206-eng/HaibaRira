@@ -129,11 +129,22 @@ section {
   color: #ffffff;
 }
 
+/* ロゴの基本設定 */
 .logo {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+}
+
+/* PCでは画像ロゴを非表示 */
+.logo-image {
+  display: none;
+  width: 150px;
+  height: auto;
+  max-width: 100%;
 }
 
 .global-nav {
@@ -465,21 +476,40 @@ section {
    スマートフォン対応
 ============================== */
 @media (max-width: 768px) {
+  /* ヘッダーを画像の上に重ねる */
   .site-header {
-    position: relative;
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px 5%;
-  }
-
-  .global-nav {
-    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    gap: 12px 24px;
+    align-items: center;
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 3%;
+    background-color: rgba(25, 25, 25, 0.25);
+    border-bottom: 1px solid rgba(186, 211, 255, 0.2);
+    color: #ffffff;
   }
 
-  .global-nav a {
-    font-size: 0.78rem;
+  /* スマホでは文字の名前を非表示 */
+  .logo-text {
+    display: none;
+  }
+
+  /* スマホでは画像の名前を表示 */
+  .logo-image {
+    display: block;
+    width: 110px;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* ナビゲーションとSNSアイコンをすべて非表示 */
+  .global-nav {
+    display: none;
   }
 
   .hero {
