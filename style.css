@@ -596,25 +596,44 @@ section {
 }
 
 
-/* スマホのヘッダーを画像だけに固定 */
+
+/* スマホのヘッダーを画像だけにし、背景を透過 */
 @media screen and (max-width: 768px) {
-  .site-header .global-nav {
-    display: none !important;
-  }
-
+  /* ヘッダー自体を透明にする */
   .site-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 3%;
+
+    background-color: rgba(25, 25, 25, 0.15) !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
   }
 
+  /* 文字の名前は非表示 */
   .site-header .logo-text {
     display: none !important;
   }
 
+  /* 画像の名前だけ表示 */
   .site-header .logo-image {
     display: block !important;
     width: 110px;
     height: auto;
+    max-width: 100%;
+  }
+
+  /* PROFILE・CONTENT・SNSアイコンをまとめて非表示 */
+  .site-header .global-nav {
+    display: none !important;
   }
 }
