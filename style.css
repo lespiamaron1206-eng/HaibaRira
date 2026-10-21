@@ -226,6 +226,7 @@ section {
 .hero-name-band {
   position: absolute;
   top: 80%;
+  left: 0;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -285,13 +286,17 @@ section {
 }
 
 .profile-image {
-  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .profile-image img {
+  display: block;
   width: 70%;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .profile-details h3 {
