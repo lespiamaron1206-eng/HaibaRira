@@ -505,17 +505,20 @@ section {
   }
 
   .profile-image {
-    width: min(100%, 360px);
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow: visible;
   }
 
   .profile-image img {
     display: block;
     width: 70%;
+    max-width: 360px;
     height: auto;
+    margin: 0 auto;
     object-fit: contain;
   }
 
