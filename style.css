@@ -1,0 +1,533 @@
+/* ==============================
+   基本設定
+============================== */
+:root {
+  --background-color: #333333;
+  --text-color: #BAD3FF;
+  --accent-color: #8DAFFF;
+  --sub-background: #292929;
+  --border-color: rgba(186, 211, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family:
+    "Noto Sans JP",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* ==============================
+   追加：イントロ画面
+   ページを開いて最初に表示する画面
+============================== */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+}
+
+#intro p {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  animation: intro-name 1.2s ease both;
+}
+
+/* 追加：イントロの名前アニメーション */
+@keyframes intro-name {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 追加：イントロをフェードアウト */
+#intro.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 追加：メイン画面をイントロ後に表示 */
+#main-content {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#main-content.show {
+  opacity: 1;
+}
+
+/* ==============================
+   ヘッダー
+============================== */
+.site-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+  padding: 16px 6%;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.global-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.global-nav a {
+  position: relative;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  transition: color 0.3s ease;
+}
+
+.global-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: var(--accent-color);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.global-nav a:hover {
+  color: #ffffff;
+}
+
+.global-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ==============================
+   メインビジュアル
+============================== */
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 540px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #191919;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* 追加：スライド画像の表示領域 */
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+
+/* 追加：画像を重ねてフェード切り替え */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* 追加：画像下部20％に名前を表示 */
+.hero-name-band {
+  position: absolute;
+  top: 80%;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  padding: 12px 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(25, 25, 25, 0.05),
+    rgba(25, 25, 25, 0.88)
+  );
+  text-align: center;
+}
+
+.hero-name-band img {
+  display: block;
+  width: auto;
+  height: 75%;
+  max-width: 80%;
+  object-fit: contain;
+}
+
+/* ==============================
+   共通セクション
+============================== */
+.section {
+  padding: 100px 8%;
+}
+
+.section-heading {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.section-subtitle {
+  margin-bottom: 6px;
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+/* ==============================
+   PROFILE
+============================== */
+.profile-section {
+  background-color: var(--background-color);
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 80px);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.profile-image {
+  overflow: hidden;
+  background-color: var(--sub-background);
+  border: 1px solid var(--border-color);
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.profile-details h3 {
+  margin-bottom: 20px;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-weight: 600;
+}
+
+.profile-introduction {
+  margin-bottom: 24px;
+  color: #eeeeee;
+  font-size: 0.95rem;
+  line-height: 2.1;
+}
+
+.profile-catchcopy {
+  margin-bottom: 28px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent-color);
+  background-color: rgba(186, 211, 255, 0.06);
+  font-size: 0.9rem;
+}
+
+.profile-list {
+  margin: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.profile-list > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px 4px;
+}
+
+.profile-list dt {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.profile-list dd {
+  margin: 0;
+  color: #eeeeee;
+  overflow-wrap: anywhere;
+}
+
+/* ==============================
+   CONTENT
+============================== */
+.content-section {
+  background-color: var(--sub-background);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.content-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  padding: 30px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.02);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+  background-color: rgba(186, 211, 255, 0.07);
+}
+
+.content-number {
+  margin-bottom: 22px;
+  color: var(--accent-color);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.content-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+}
+
+.content-card p {
+  margin-bottom: 24px;
+  color: #dddddd;
+  font-size: 0.9rem;
+}
+
+.content-arrow {
+  margin-top: auto;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* ==============================
+   SNS
+============================== */
+.sns-section {
+  text-align: center;
+}
+
+.sns-description {
+  margin-bottom: 30px;
+  color: #eeeeee;
+}
+
+.sns-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.sns-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  min-height: 52px;
+  padding: 12px 24px;
+  border: 1px solid var(--border-color);
+  letter-spacing: 0.08em;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.sns-links a:hover {
+  color: var(--background-color);
+  background-color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+/* ==============================
+   フッター
+============================== */
+.site-footer {
+  padding: 24px 6%;
+  border-top: 1px solid var(--border-color);
+  background-color: #292929;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  color: #cccccc;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+/* ==============================
+   スマートフォン対応
+============================== */
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 5%;
+  }
+
+  .global-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 24px;
+  }
+
+  .global-nav a {
+    font-size: 0.78rem;
+  }
+
+  .hero {
+    height: 60vh;
+    min-height: 360px;
+  }
+
+  .hero-slide {
+    object-position: center;
+  }
+
+  .section {
+    padding: 72px 6%;
+  }
+
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .profile-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .profile-image {
+    width: min(100%, 360px);
+    margin: 0 auto;
+  }
+
+  .profile-list > div {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .content-card {
+    min-height: 210px;
+  }
+
+  .sns-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sns-links a {
+    width: 100%;
+  }
+}
+
+/* 動きを控える設定の端末ではアニメーションを短縮 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
