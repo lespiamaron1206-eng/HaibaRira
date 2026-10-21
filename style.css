@@ -594,3 +594,27 @@ section {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* スマホのヘッダーを画像だけに固定 */
+@media screen and (max-width: 768px) {
+  .site-header .global-nav {
+    display: none !important;
+  }
+
+  .site-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .site-header .logo-text {
+    display: none !important;
+  }
+
+  .site-header .logo-image {
+    display: block !important;
+    width: 110px;
+    height: auto;
+  }
+}
