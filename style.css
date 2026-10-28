@@ -2,10 +2,10 @@
    基本設定
 ============================== */
 :root {
-  --background-color: #333333;
-  --text-color: #BAD3FF;
+  --background-color: #fff;
+  --text-color: rgb(175, 200, 244);
   --accent-color: #8DAFFF;
-  --sub-background: #292929;
+  --sub-background: #a1bdff5d;
   --border-color: rgba(186, 211, 255, 0.3);
 }
 
@@ -202,8 +202,9 @@ section {
 ============================== */
 .hero {
   position: relative;
-  height: 70vh;
-  min-height: 540px;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
   margin-top: 0;
   padding: 0;
   overflow: hidden;
@@ -217,13 +218,19 @@ section {
   inset: 0;
 }
 
+/* top_bg_01.png だけ横幅を広げる */
+.hero-slide[src*="top_bg_01.png"] {
+  object-fit: cover;
+  transform: scale(1.1);
+}
+
 /* 追加：画像を重ねてフェード切り替え */
 .hero-slide {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -266,6 +273,7 @@ section {
 ============================== */
 .section {
   padding: 100px 8%;
+  padding-top: 40px;
 }
 
 .section-heading {
@@ -276,7 +284,6 @@ section {
 .section-heading h2 {
   margin-bottom: 0;
   font-size: clamp(1.2rem, 2.5vw, 1.75rem);
-  font-weight: 500;
   letter-spacing: 0.16em;
 }
 
@@ -312,7 +319,7 @@ section {
 
 .profile-details h3 {
   margin-bottom: 20px;
-  font-size: clamp(2.5rem, 4vw, 3.4rem);
+  font-size: clamp(1.4rem, 2.9vw, 2.3rem);
   font-weight: 500;
   padding: 14px 18px;
   border-left: 3px solid var(--accent-color);
@@ -321,7 +328,7 @@ section {
 
 .profile-kana {
   margin-left: 2px;
-  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-size: clamp(0.7rem, 1.4vw, 1.1rem);
   font-weight: 400;
   vertical-align: baseline;
   letter-spacing: 0.08em;
@@ -329,14 +336,15 @@ section {
 
 .profile-introduction {
   margin-bottom: 24px;
-  color: #eeeeee;
-  font-size: 0.95rem;
+  color: #1b1b1bbb;
+  font-size: 0.75rem;
   line-height: 2.1;
 }
 
 .profile-list {
   margin: 0;
   border-top: 1px solid var(--border-color);
+  font-size: 0.75rem;
 }
 
 .profile-list > div {
@@ -353,7 +361,7 @@ section {
 
 .profile-list dd {
   margin: 0;
-  color: #eeeeee;
+  color: #1b1b1bbb;
   overflow-wrap: anywhere;
 }
 
@@ -362,6 +370,7 @@ section {
 ============================== */
 .content-section {
   background-color: var(--sub-background);
+  padding-bottom: 70px;
 }
 
 .content-grid {
@@ -377,10 +386,10 @@ section {
   display: flex;
   flex-direction: column;
   min-height: 250px;
-  padding: 30px;
+  padding: 20px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
-  background-color: rgba(255, 255, 255, 0.02);
+  border: 2px solid var(--border-color);
+  background-color: rgba(231, 243, 251, 0.83);
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,
@@ -389,32 +398,27 @@ section {
 
 .content-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-color);
-  background-color: rgba(186, 211, 255, 0.07);
-}
-
-.content-number {
-  margin-bottom: 22px;
-  color: var(--accent-color);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
+  color: var(--background-color);
+  background-color: var(--text-color);
+  border-color: var(--text-color);
 }
 
 .content-card h3 {
   margin-bottom: 12px;
   font-size: 1.4rem;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 
 .content-card p {
   margin-bottom: 24px;
-  color: #dddddd;
-  font-size: 0.9rem;
+  color: #1b1b1bbb;
+  font-size: 0.75rem;
 }
 
 .content-arrow {
   margin-top: auto;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
 }
 
@@ -423,7 +427,6 @@ section {
 ============================== */
 .sns-section {
   text-align: center;
-  padding-top: 30px;
   padding-bottom: 70px;
 }
 
@@ -441,7 +444,7 @@ section {
   min-width: 150px;
   min-height: 52px;
   padding: 12px 24px;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   letter-spacing: 0.08em;
   transition:
     color 0.3s ease,
@@ -461,13 +464,13 @@ section {
 .site-footer {
   padding: 24px 6%;
   border-top: 1px solid var(--border-color);
-  background-color: #292929;
+  background-color: #a1bdff5d;
   text-align: center;
 }
 
 .site-footer p {
   margin: 0;
-  color: #cccccc;
+  color: #1b1b1bbb;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
 }
@@ -490,7 +493,7 @@ section {
     min-height: 60px;
     padding: 10px 3%;
     background-color: rgba(25, 25, 25, 0.25);
-    border-bottom: 1px solid rgba(186, 211, 255, 0.2);
+    border-bottom: 2px solid rgba(186, 211, 255, 0.2);
     color: #ffffff;
   }
 
@@ -513,8 +516,9 @@ section {
   }
 
   .hero {
-    height: 60vh;
-    min-height: 360px;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
   }
 
   .hero-slide {
@@ -553,7 +557,7 @@ section {
   }
 
   .profile-kana {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     margin-left: 8px;
   }
 
@@ -562,13 +566,28 @@ section {
     gap: 12px;
   }
 
+  /* CONTENT：スマホでもカード3枚を横並びにする */
   .content-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(4px, 2vw, 12px);
   }
 
   .content-card {
-    min-height: 210px;
+    min-width: 0;
+    min-height: 150px;
+    padding: clamp(6px, 2vw, 12px);
+  }
+
+  /* CONTENT：画面幅に合わせて文字サイズを自動調整 */
+  .content-card h3 {
+    font-size: clamp(0.65rem, 2.5vw, 1rem);
+    overflow-wrap: anywhere;
+  }
+
+  .content-arrow {
+    font-size: clamp(0.47rem, 1.8vw, 0.9rem);
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
   }
 
   .sns-links {
