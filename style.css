@@ -1,13 +1,132 @@
-/* ==============================
-   基本設定
-============================== */
+/* ==================================================
+   1. 共通設定
+   色・文字サイズ・余白などを変更するときは
+   まず、この :root を確認する
+================================================== */
+
 :root {
-  --background-color: #fff;
-  --text-color: rgb(175, 200, 244);
-  --accent-color: #8DAFFF;
-  --sub-background: #a1bdff5d;
-  --border-color: rgba(186, 211, 255, 0.3);
+  /* ---------- 色の設定 ---------- */
+
+  /* 基本の色 */
+  --color-white: #FFFFFF;       /* 白色 */
+  --color-text: #AFC8F4;        /* 基本の文字色 */
+  --color-accent: #8DAFFF;      /* アクセントカラー */
+
+  /* 背景色 */
+  --color-background: #FFFFFF;  /* 基本の背景色 */
+  --color-content-bg: rgba(161, 189, 255, 0.36);
+  /* CONTENTなどの半透明背景 */
+
+  --color-header-bg: rgba(25, 25, 25, 0.15);
+  /* スマホのヘッダー背景 */
+
+  --color-header-bg-pc: rgba(25, 25, 25, 0.25);
+  /* PCのヘッダー背景 */
+
+  --color-dark-bg: #191919;     /* 暗い背景色 */
+  --color-card-bg: rgba(231, 243, 251, 0.83);
+  /* CONTENTカードの背景色 */
+
+  /* 枠線の色 */
+  --color-border: rgba(186, 211, 255, 0.3);
+  /* カードや各要素の枠線 */
+
+  --color-header-border: rgba(186, 211, 255, 0.2);
+  /* ヘッダーの枠線 */
+
+  /* 特定の要素に使用する色 */
+  --color-dark-text: rgba(27, 27, 27, 0.73);
+  /* 明るい背景上の暗い文字 */
+
+  --color-profile-highlight: rgba(186, 211, 255, 0.06);
+  /* PROFILE内の強調背景 */
+
+  --color-footer-overlay: rgba(161, 189, 255, 0.36);
+  /* フッターの半透明の青い背景 */
+
+
+  /* ---------- フォントの設定 ---------- */
+
+  /* サイト全体のフォント */
+  --font-family:
+    "Noto Sans JP",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+
+  /* 基本の文字サイズ */
+  --font-xs: 0.65rem;  /* とても小さい文字 */
+  --font-sm: 0.75rem;  /* 補足・説明など */
+  --font-base: 1rem;   /* 通常の文字 */
+  --font-md: 1.3rem;   /* やや大きい文字 */
+  --font-lg: 1.75rem;  /* 大きい文字 */
+
+  /* 特定の場所の文字サイズ */
+  --font-section-title: clamp(1.2rem, 2.5vw, 1.75rem);
+  /* PROFILE・CONTENT・SNSの見出し */
+
+  --font-profile-name: clamp(1.4rem, 2.9vw, 2.3rem);
+  /* PROFILE内の名前 */
+
+  --font-hero-title: clamp(2rem, 6vw, 4.5rem);
+  /* イントロ画面の名前 */
+
+
+  /* ---------- 余白の設定 ---------- */
+
+  --space-1: 4px;    /* ごく小さな余白 */
+  --space-2: 8px;    /* 小さな余白 */
+  --space-3: 12px;   /* やや小さな余白 */
+  --space-4: 16px;   /* 標準的な余白 */
+  --space-5: 24px;   /* やや大きな余白 */
+  --space-6: 32px;   /* 大きな余白 */
+  --space-7: 48px;   /* かなり大きな余白 */
+  --space-8: 72px;   /* セクション内の広い余白 */
+  --space-9: 100px;  /* セクション上下などの大きな余白 */
+
+  /* セクション全体の余白 */
+  --section-padding-x: 8%; /* 左右の余白 */
+  --section-padding-y: 100px; /* 上下の余白 */
+
+  /* コンテンツの横幅 */
+  --content-width: 1100px; /* 最大横幅 */
+
+
+  /* ---------- 枠線・角丸の設定 ---------- */
+
+  --border-thin: 1px solid var(--color-border);
+  /* 細い枠線 */
+
+  --border-card: 2px solid var(--color-border);
+  /* カードなどの枠線 */
+
+  --border-radius: 0;
+  /* 角丸の大きさ：0なら角を丸めない */
+
+
+  /* ---------- アニメーションの設定 ---------- */
+
+  --transition-fast: 0.3s ease;
+  /* ホバーなどの短いアニメーション */
+
+  --transition-normal: 0.8s ease;
+  /* フェードなどのゆっくりしたアニメーション */
+
+
+  /* ---------- ヘッダー・重なり順の設定 ---------- */
+
+  --header-height: 76px; /* PCヘッダーの高さ */
+
+  --layer-background: 0; /* 背景 */
+  --layer-content: 1;    /* 本文・コンテンツ */
+  --layer-header: 10;    /* ヘッダー */
+  --layer-intro: 1000;   /* イントロ画面 */
 }
+
+
+/* ==================================================
+   2. 基本スタイル
+================================================== */
 
 * {
   box-sizing: border-box;
@@ -15,18 +134,14 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: var(--header-height);
 }
 
 body {
   margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family:
-    "Noto Sans JP",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
+  background-color: transparent;
+  color: var(--color-text);
+  font-family: var(--font-family);
   line-height: 1.8;
 }
 
@@ -48,38 +163,44 @@ h3 {
 }
 
 section {
-  scroll-margin-top: 80px;
+  scroll-margin-top: var(--header-height);
 }
 
-/* ==============================
-   追加：イントロ画面
-   ページを開いて最初に表示する画面
-============================== */
+
+/* ==================================================
+   3. イントロ画面
+   ページを開いたとき最初に表示する画面
+================================================== */
+
 #intro {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: var(--layer-intro);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--background-color);
-  color: var(--text-color);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
   opacity: 1;
   visibility: visible;
+
   transition:
-    opacity 0.8s ease,
-    visibility 0.8s ease;
+    opacity var(--transition-normal),
+    visibility var(--transition-normal);
 }
 
 #intro p {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-size: var(--font-hero-title);
   font-weight: 600;
   letter-spacing: 0.18em;
   animation: intro-name 1.2s ease both;
 }
 
-/* 追加：イントロの名前アニメーション */
+/* イントロの名前アニメーション */
 @keyframes intro-name {
   from {
     opacity: 0;
@@ -92,61 +213,68 @@ section {
   }
 }
 
-/* 追加：イントロをフェードアウト */
+/* イントロをフェードアウト */
 #intro.hide {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-/* 追加：メイン画面をイントロ後に表示 */
+/* イントロ表示中はメイン画面を隠す */
 #main-content {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity var(--transition-normal);
 }
 
+/* イントロ終了後にメイン画面を表示 */
 #main-content.show {
   opacity: 1;
 }
 
-/* ==============================
-   ヘッダー
-============================== */
+
+/* ==================================================
+   4. ヘッダー
+================================================== */
+
 .site-header {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: var(--layer-header);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: var(--space-5);
+
   width: 100%;
-  min-height: 76px;
-  padding: 16px 6%;
-  background-color: rgba(25, 25, 25, 0.25);
-  border-bottom: 1px solid rgba(186, 211, 255, 0.2);
-  color: #ffffff;
+  min-height: var(--header-height);
+  padding: var(--space-4) 6%;
+
+  background-color: var(--color-header-bg-pc);
+  border-bottom: 1px solid var(--color-header-border);
+  color: var(--color-white);
 }
 
-/* ロゴの基本設定 */
+/* ロゴ全体 */
 .logo {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  font-size: 1.3rem;
+
+  font-size: var(--font-md);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
-/* PCでは画像ロゴを非表示 */
+/* PCでは名前画像を非表示 */
 .logo-image {
   display: none;
   width: 150px;
   height: auto;
-  max-width: 100%;
 }
 
+/* ナビゲーション */
 .global-nav {
   display: flex;
   align-items: center;
@@ -157,123 +285,139 @@ section {
 .global-nav a {
   position: relative;
   padding: 6px 0;
+
   font-size: 0.85rem;
   letter-spacing: 0.12em;
-  transition: color 0.3s ease;
+
+  transition: color var(--transition-fast);
 }
 
+/* ナビゲーションの下線 */
 .global-nav a::after {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
+
   height: 1px;
-  background-color: var(--accent-color);
+  background-color: var(--color-accent);
+
   content: "";
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+
+  transition: transform var(--transition-fast);
 }
 
 .global-nav a:hover {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .global-nav a:hover::after {
   transform: scaleX(1);
 }
 
-.icon_youtube {
+/* YouTubeアイコン */
+.icon-youtube {
   width: 42px;
   height: 33px;
-  display: block;
-  background-repeat: no-repeat;
+  object-fit: contain;
 }
 
-.icon_X {
+/* Xアイコン */
+.icon-x {
   width: 25px;
   height: 18px;
-  display: block;
-  background-repeat: no-repeat;
+  object-fit: contain;
 }
 
-/* ==============================
-   メインビジュアル
-============================== */
+
+/* ==================================================
+   5. メインビジュアル
+================================================== */
+
 .hero {
   position: relative;
-  height: auto;
-  min-height: 0;
   aspect-ratio: 16 / 9;
   margin-top: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #191919;
-  border-bottom: 1px solid var(--border-color);
+
+  background-color: var(--color-dark-bg);
+  border-bottom: var(--border-thin);
 }
 
-/* 追加：スライド画像の表示領域 */
+/* スライド画像の表示領域 */
 .hero-slides {
   position: absolute;
   inset: 0;
 }
 
-/* top_bg_01.png だけ横幅を広げる */
+/* スライド画像共通 */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* 表示中の画像 */
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* 1枚目の画像だけ少し拡大 */
 .hero-slide[src*="top_bg_01.png"] {
   object-fit: cover;
   transform: scale(1.1);
 }
 
-/* 追加：画像を重ねてフェード切り替え */
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-slide.active {
-  opacity: 1;
-}
-
-/* 追加：画像下部20％に名前を表示 */
+/* メイン画像下部の名前表示エリア */
 .hero-name-band {
   position: absolute;
   top: 80%;
   left: 0;
   z-index: 2;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   height: 20%;
   padding: 0;
+
   background: linear-gradient(
     to bottom,
     rgba(25, 25, 25, 0.05),
     rgba(25, 25, 25, 0.88)
   );
+
   text-align: center;
 }
 
+/* メイン画像下部の名前画像 */
 .hero-name-band img {
-  display: block;
   width: 80%;
   height: 95%;
-  max-width: 100%;
   object-fit: contain;
 }
 
-/* ==============================
-   共通セクション
-============================== */
+
+/* ==================================================
+   6. 共通セクション
+================================================== */
+
 .section {
-  padding: 100px 8%;
-  padding-top: 40px;
+  padding: var(--space-6) var(--section-padding-x)
+    var(--section-padding-y);
 }
 
 .section-heading {
@@ -283,49 +427,75 @@ section {
 
 .section-heading h2 {
   margin-bottom: 0;
-  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-size: var(--font-section-title);
+  font-weight: 500;
   letter-spacing: 0.16em;
 }
 
-/* ==============================
-   PROFILE
-============================== */
-.profile-section {
-  background-color: var(--background-color);
+
+/* ==================================================
+   7. PROFILE・SNS共通の固定背景
+================================================== */
+
+.profile-sns-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("./images/prf\,sns_background3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+
+/* ==================================================
+   8. PROFILE
+================================================== */
+
+.profile-section {
+  background: transparent;
+}
+
+/* プロフィール画像と詳細を横並びにする */
 .profile-content {
   display: grid;
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
   align-items: start;
   gap: clamp(32px, 6vw, 80px);
-  max-width: 1100px;
+
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
+/* プロフィール画像の配置 */
 .profile-image {
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
+  width: 100%;
 }
 
 .profile-image img {
-  display: block;
   width: 70%;
   height: auto;
   object-fit: contain;
 }
 
+/* プロフィール名 */
 .profile-details h3 {
   margin-bottom: 20px;
-  font-size: clamp(1.4rem, 2.9vw, 2.3rem);
-  font-weight: 500;
   padding: 14px 18px;
-  border-left: 3px solid var(--accent-color);
-  background-color: rgba(186, 211, 255, 0.06);
+
+  font-size: var(--font-profile-name);
+  font-weight: 500;
+
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-profile-highlight);
 }
 
+/* 名前の英字表記 */
 .profile-kana {
   margin-left: 2px;
   font-size: clamp(0.7rem, 1.4vw, 1.1rem);
@@ -334,190 +504,325 @@ section {
   letter-spacing: 0.08em;
 }
 
+/* プロフィール紹介文 */
 .profile-introduction {
   margin-bottom: 24px;
-  color: #1b1b1bbb;
-  font-size: 0.75rem;
+  color: var(--color-dark-text);
+  font-size: var(--font-sm);
   line-height: 2.1;
 }
 
+/* プロフィール一覧 */
 .profile-list {
   margin: 0;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.75rem;
+  border-top: var(--border-thin);
+  font-size: var(--font-sm);
 }
 
+/* 各プロフィール項目 */
 .profile-list > div {
   display: grid;
   grid-template-columns: 120px minmax(0, 1fr);
-  gap: 16px;
-  padding: 12px 4px;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-1);
 }
 
+/* 項目名 */
 .profile-list dt {
-  color: var(--accent-color);
+  color: var(--color-accent);
   font-weight: 600;
 }
 
+/* 項目の内容 */
 .profile-list dd {
   margin: 0;
-  color: #1b1b1bbb;
+  color: var(--color-dark-text);
   overflow-wrap: anywhere;
 }
 
-/* ==============================
-   CONTENT
-============================== */
+
+/* ==================================================
+   9. CONTENT
+================================================== */
+
 .content-section {
-  background-color: var(--sub-background);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  /* 背景色と背景画像 */
+  background-color: var(--color-content-bg);
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    ),
+    url("./images/content_background.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   padding-bottom: 70px;
 }
 
+/* 舞い落ちる羽 */
+.content-feather {
+  position: absolute;
+  top: -150px;
+  left: 20%;
+  z-index: -1;
+
+  width: 1000px;
+  max-width: none;
+  height: auto;
+
+  opacity: 0;
+  filter: drop-shadow(0 0 3px rgba(80, 110, 160, 0.7));
+  pointer-events: none;
+
+  animation: feather-float 22s linear infinite;
+}
+
+/* 羽が風に漂うアニメーション */
+@keyframes feather-float {
+  0% {
+    transform: translate(0, 0) rotate(-5deg);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.45;
+  }
+
+  30% {
+    transform: translate(18px, 90px) rotate(-2deg);
+  }
+
+  48% {
+    transform: translate(8px, 190px) rotate(3deg);
+  }
+
+  68% {
+    transform: translate(35px, 290px) rotate(0deg);
+  }
+
+  85% {
+    transform: translate(55px, 390px) rotate(4deg);
+    opacity: 0.35;
+  }
+
+  100% {
+    transform: translate(42px, 500px) rotate(1deg);
+    opacity: 0;
+  }
+}
+
+/* CONTENTカードの配置 */
 .content-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  max-width: 1100px;
+  gap: var(--space-5);
+
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
+/* CONTENTカード */
 .content-card {
   position: relative;
+
   display: flex;
   flex-direction: column;
+
   min-height: 250px;
-  padding: 20px;
+  padding: var(--space-4);
   overflow: hidden;
-  border: 2px solid var(--border-color);
-  background-color: rgba(231, 243, 251, 0.83);
+
+  border: var(--border-card);
+  background-color: var(--color-card-bg);
+
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
+/* カードにマウスを乗せたとき */
 .content-card:hover {
   transform: translateY(-5px);
-  color: var(--background-color);
-  background-color: var(--text-color);
-  border-color: var(--text-color);
+  color: var(--color-background);
+  background-color: var(--color-text);
+  border-color: var(--color-text);
 }
 
+/* カードの見出し */
 .content-card h3 {
-  margin-bottom: 12px;
-  font-size: 1.4rem;
+  margin-bottom: var(--space-3);
+  font-size: var(--font-md);
   font-weight: 500;
   letter-spacing: 0.12em;
 }
 
+/* カードの説明 */
 .content-card p {
-  margin-bottom: 24px;
-  color: #1b1b1bbb;
-  font-size: 0.75rem;
+  margin-bottom: var(--space-5);
+  color: var(--color-dark-text);
+  font-size: var(--font-sm);
 }
 
+/* VIEW MORE */
 .content-arrow {
   margin-top: auto;
   font-size: 0.9rem;
   letter-spacing: 0.1em;
 }
 
-/* ==============================
-   SNS
-============================== */
+
+/* ==================================================
+   10. SNS
+================================================== */
+
 .sns-section {
-  text-align: center;
   padding-bottom: 70px;
+  text-align: center;
+  background: transparent;
 }
 
+/* SNSリンクの配置 */
 .sns-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
+/* SNSリンクボタン */
 .sns-links a {
   display: flex;
   align-items: center;
   justify-content: center;
+
   min-width: 150px;
   min-height: 52px;
-  padding: 12px 24px;
-  border: 2px solid var(--border-color);
+  padding: var(--space-3) var(--space-5);
+
+  border: var(--border-card);
   letter-spacing: 0.08em;
+
   transition:
-    color 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease;
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
+/* SNSリンクにマウスを乗せたとき */
 .sns-links a:hover {
-  color: var(--background-color);
-  background-color: var(--text-color);
-  border-color: var(--text-color);
+  color: var(--color-background);
+  background-color: var(--color-text);
+  border-color: var(--color-text);
 }
 
-/* ==============================
-   フッター
-============================== */
+
+/* ==================================================
+   11. フッター
+   固定背景画像を隠し、半透明の青い背景を表示する
+================================================== */
+
 .site-footer {
-  padding: 24px 6%;
-  border-top: 1px solid var(--border-color);
-  background-color: #a1bdff5d;
+  position: relative;
+  isolation: isolate;
+
+  padding: var(--space-5) 6%;
+  border-top: var(--border-thin);
+  background: transparent;
   text-align: center;
 }
 
+/* 固定背景画像を隠すための下地 */
+.site-footer::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  content: "";
+  background-color: var(--color-white);
+  pointer-events: none;
+}
+
+/* 半透明の青い背景を重ねる */
+.site-footer::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  content: "";
+  background-color: var(--color-footer-overlay);
+  pointer-events: none;
+}
+
+/* フッターの文字 */
 .site-footer p {
+  position: relative;
+  z-index: 1;
+
   margin: 0;
-  color: #1b1b1bbb;
+  color: var(--color-dark-text);
   font-size: 0.8rem;
   letter-spacing: 0.04em;
 }
 
-/* ==============================
-   スマートフォン対応
-============================== */
-@media (max-width: 768px) {
-  /* ヘッダーを画像の上に重ねる */
+
+/* ==================================================
+   12. スマートフォン対応
+   スマホ表示の調整は、基本的にここを編集する
+================================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* ---------- ヘッダー ---------- */
+
   .site-header {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: var(--layer-header);
+
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+
     width: 100%;
     min-height: 60px;
     padding: 10px 3%;
-    background-color: rgba(25, 25, 25, 0.25);
-    border-bottom: 2px solid rgba(186, 211, 255, 0.2);
-    color: #ffffff;
+
+    background-color: var(--color-header-bg);
+    border-bottom: none;
+    box-shadow: none;
   }
 
-  /* スマホでは文字の名前を非表示 */
-  .logo-text {
+  /* スマホでは文字のロゴを非表示 */
+  .site-header .logo-text {
     display: none;
   }
 
-  /* スマホでは画像の名前を表示 */
-  .logo-image {
+  /* スマホでは名前画像を左側に表示 */
+  .site-header .logo-image {
     display: block;
     width: 110px;
     height: auto;
     max-width: 100%;
   }
 
-  /* ナビゲーションとSNSアイコンをすべて非表示 */
-  .global-nav {
+  /* ヘッダーのナビゲーション・SNSアイコンを非表示 */
+  .site-header .global-nav {
     display: none;
   }
 
+
+  /* ---------- メインビジュアル ---------- */
+
   .hero {
-    height: auto;
-    min-height: 0;
     aspect-ratio: 16 / 9;
   }
 
@@ -525,13 +830,19 @@ section {
     object-position: center;
   }
 
+
+  /* ---------- 共通セクション ---------- */
+
   .section {
-    padding: 72px 6%;
+    padding: var(--space-8) 6%;
   }
 
   .section-heading {
-    margin-bottom: 32px;
+    margin-bottom: var(--space-5);
   }
+
+
+  /* ---------- PROFILE ---------- */
 
   .profile-content {
     grid-template-columns: 1fr;
@@ -541,14 +852,10 @@ section {
   .profile-image {
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     overflow: visible;
   }
 
   .profile-image img {
-    display: block;
     width: 70%;
     max-width: 360px;
     height: auto;
@@ -557,16 +864,19 @@ section {
   }
 
   .profile-kana {
-    font-size: 0.8rem;
     margin-left: 8px;
+    font-size: 0.8rem;
   }
 
   .profile-list > div {
     grid-template-columns: 100px minmax(0, 1fr);
-    gap: 12px;
+    gap: var(--space-3);
   }
 
-  /* CONTENT：スマホでもカード3枚を横並びにする */
+
+  /* ---------- CONTENT ---------- */
+
+  /* スマホでもカード3枚を横並びにする */
   .content-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(4px, 2vw, 12px);
@@ -578,29 +888,49 @@ section {
     padding: clamp(6px, 2vw, 12px);
   }
 
-  /* CONTENT：画面幅に合わせて文字サイズを自動調整 */
+  /* 画面幅に合わせて見出しを縮小 */
   .content-card h3 {
     font-size: clamp(0.65rem, 2.5vw, 1rem);
     overflow-wrap: anywhere;
   }
 
+  /* VIEW MOREも画面幅に合わせて縮小 */
   .content-arrow {
     font-size: clamp(0.47rem, 1.8vw, 0.9rem);
     letter-spacing: 0;
     overflow-wrap: anywhere;
   }
 
+
+  /* ---------- SNS ---------- */
+
+  /* スマホでもYouTubeとXを横並びにする */
   .sns-links {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .sns-links a {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 16px);
     width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
   }
-}
 
-/* 動きを控える設定の端末ではアニメーションを短縮 */
+  /* 2つのボタンを均等な幅にする */
+  .sns-links a {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding: var(--space-3) var(--space-2);
+    overflow-wrap: anywhere;
+  }
+
+
+
+/* ==================================================
+   13. 動きを控える設定
+   端末側でアニメーション軽減が設定されている場合
+================================================== */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -611,48 +941,5 @@ section {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-
-
-/* スマホのヘッダーを画像だけにし、背景を透過 */
-@media screen and (max-width: 768px) {
-  /* ヘッダー自体を透明にする */
-  .site-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-
-    width: 100%;
-    min-height: 60px;
-    padding: 10px 3%;
-
-    background-color: rgba(25, 25, 25, 0.15) !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-  }
-
-  /* 文字の名前は非表示 */
-  .site-header .logo-text {
-    display: none !important;
-  }
-
-  /* 画像の名前だけ表示 */
-  .site-header .logo-image {
-    display: block !important;
-    width: 110px;
-    height: auto;
-    max-width: 100%;
-  }
-
-  /* PROFILE・CONTENT・SNSアイコンをまとめて非表示 */
-  .site-header .global-nav {
-    display: none !important;
   }
 }
